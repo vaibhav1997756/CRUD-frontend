@@ -5,6 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 const Update = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
+    const [successMessage, setSuccessMessage] = useState('');
     const navigate = useNavigate();
     const { id } = useParams();
 
@@ -33,6 +34,7 @@ const Update = () => {
             <div className='w-50 bg-white rounded p-3'>
                 <form onSubmit={handleSubmit}>
                     <h2>Update Student</h2>
+                    {successMessage && <div className="alert alert-success">{successMessage}</div>}
                     <div className='mb-2'>
                         <label htmlFor='name'>Name</label>
                         <input 
