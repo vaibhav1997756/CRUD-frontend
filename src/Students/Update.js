@@ -10,7 +10,7 @@ const Update = () => {
 
     // Fetch the existing data when the component mounts
     useEffect(() => {
-        axios.get(`http://localhost:8080/create/${id}`)
+        axios.get(`http://localhost:8080/usercrud/${id}`)
             .then(res => {
                 setName(res.data.name);
                 setEmail(res.data.email);
