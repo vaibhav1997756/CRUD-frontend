@@ -44,6 +44,7 @@ const Crud = () => {
                                     <td>{data.name}</td>
                                     <td>{data.email}</td>
                                     <td>
+                                    <Link to={`read/${data.id}`} className="btn btn-green me-2" >Read</Link>
                                         <Link to={`update/${data.id}`} className="btn btn-primary me-2" >Update</Link>
                                         <button className="btn btn-danger" onClick={()=> handleDelete(data.id)}>Delete</button>
                                     </td>
