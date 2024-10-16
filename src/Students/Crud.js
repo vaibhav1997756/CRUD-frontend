@@ -31,6 +31,7 @@ const Crud = () => {
                 <table className="table">
                     <thead>
                         <tr>
+                           <th>ID</th>
                             <th>Name</th>
                             <th>Email</th>
 
@@ -41,6 +42,7 @@ const Crud = () => {
                         {Array.isArray(usercrud) && usercrud.length > 0 ? (
                             usercrud.map((data) => (
                                 <tr key={data.id}>
+                                     <td>{data.id}</td>
                                     <td>{data.name}</td>
                                     <td>{data.email}</td>
                                     <td>
