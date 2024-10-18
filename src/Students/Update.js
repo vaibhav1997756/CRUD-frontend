@@ -22,7 +22,7 @@ const Update = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.put(`http://localhost:8080/update/${id}`, { name, email })
+        axios.put(`http://localhost:8080/update/${id}`, { name, email,phone })
             .then(res => {
                 console.log(res);
                 navigate('/');
@@ -60,9 +60,9 @@ const Update = () => {
                         />
                     </div>
                     <div className='mb-2'>
-                        <label htmlFor='number'>Phone No.</label>
+                        <label htmlFor='phone'>Phone No.</label>
                         <input 
-                            type="email" 
+                            type="number" 
                             placeholder='Enter Phone No.' 
                             className='form-control'
                             onChange={e => setPhone(e.target.value)} 
