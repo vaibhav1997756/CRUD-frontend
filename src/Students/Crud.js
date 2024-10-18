@@ -34,7 +34,7 @@ const Crud = () => {
                            <th>ID</th>
                             <th>Name</th>
                             <th>Email</th>
-
+                            <th>Phone</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -45,6 +45,7 @@ const Crud = () => {
                                      <td>{data.id}</td>
                                     <td>{data.name}</td>
                                     <td>{data.email}</td>
+                                    <td>{data.phone}</td>
                                     <td>
                                     <Link to={`read/${data.id}`} className="btn btn-green me-2" >Read</Link>
                                         <Link to={`update/${data.id}`} className="btn btn-primary me-2" >Update</Link>

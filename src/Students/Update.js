@@ -5,6 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 const Update = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
+    const [phone, setPhone] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
     const navigate = useNavigate();
     const { id } = useParams();
@@ -55,6 +56,17 @@ const Update = () => {
                             className='form-control'
                             onChange={e => setEmail(e.target.value)} 
                             value={email}
+                            required
+                        />
+                    </div>
+                    <div className='mb-2'>
+                        <label htmlFor='number'>Phone No.</label>
+                        <input 
+                            type="email" 
+                            placeholder='Enter Phone No.' 
+                            className='form-control'
+                            onChange={e => setPhone(e.target.value)} 
+                            value={phone}
                             required
                         />
                     </div>

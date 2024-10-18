@@ -6,11 +6,12 @@ const CreateStudent = () => {
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
+    const [phone, setPhone] = useState('');
     const navigate = useNavigate();
 
     function handleSubmit(e) {
         e.preventDefault();
-        axios.post('http://localhost:8080/create', { name, email })
+        axios.post('http://localhost:8080/create', { name, email,phone })
             .then(res => {
                 console.log(res);
                 navigate('/');
@@ -42,6 +43,17 @@ const CreateStudent = () => {
                             className='form-control'
                             onChange={e => setEmail(e.target.value)} 
                             value={email}
+                            required
+                        />
+                    </div>
+                    <div className='mb-2'>
+                        <label htmlFor='phone'>Email</label>
+                        <input 
+                            type="number" 
+                            placeholder='Enter Phone No.' 
+                            className='form-control'
+                            onChange={e => setPhone(e.target.value)} 
+                            value={phone}
                             required
                         />
                     </div>
