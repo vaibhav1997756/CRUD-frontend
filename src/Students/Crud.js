@@ -335,6 +335,7 @@ const Crud = () => {
             <div className="w-50 bg-white rounded p-3">
                 <Link to='/create' className="btn btn-success mb-3">Add +</Link>
                 <button onClick={handleExport} className="btn btn-warning mb-3">Export to Excel</button>
+                <Link className="btn btn-success mb-3" to="/upload">Import to Excel</Link>
                 <table className="table">
                     <thead>
                         <tr>
