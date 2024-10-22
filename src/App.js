@@ -6,6 +6,9 @@ import CreateStudent from './Students/CreateStudent'
 import UpdateStudent from './Students/Update'
 import ReadStudent from './Students/Read'
 import UploadData from './Students/UploadData'
+import Register from './RegistrationAndLogin/Registration'
+import LogIn from './RegistrationAndLogin/Login'
+import Home from './RegistrationAndLogin/Home'
 function App() {
   return (
     <div>
@@ -17,6 +20,9 @@ function App() {
               <Route path='/update/:id' element={<UpdateStudent />} />
               <Route path='/read/:id' element={<ReadStudent />} />
               <Route path='/upload' element={<UploadData />} />
+              <Route path='/signup' element={<Register />} />
+              <Route path='/login' element={<LogIn />} />
+              <Route path='/home' element={<Home />} />
 
              </Routes>
              </Router>

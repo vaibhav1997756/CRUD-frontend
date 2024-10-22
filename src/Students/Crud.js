@@ -378,15 +378,275 @@
 
 // export default Crud;
 
+// import React, { useEffect, useState } from 'react';
+// import { Link } from 'react-router-dom';
+// import axios from 'axios';
+// import * as XLSX from 'xlsx';
+// import ReactPaginate from 'react-paginate';
+
+// const Crud = () => {
+//     const [usercrud, setCrud] = useState([]);
+//     const [currentPage, setCurrentPage] = useState(0);
+//     const itemsPerPage = 5; // Number of items per page
+//     const pageCount = Math.ceil(usercrud.length / itemsPerPage); // Total number of pages
+
+//     useEffect(() => {
+//         axios.get('http://localhost:8080/')
+//             .then(res => {
+//                 const data = Array.isArray(res.data) ? res.data : [];
+//                 const sortedData = data.sort((a, b) => b.id - a.id);
+//                 setCrud(sortedData);
+//             })
+//             .catch(err => console.log(err));
+//     }, []);
+
+//     const handleDelete = async (id) => {
+//         try {
+//             await axios.delete(`http://localhost:8080/usercrud/` + id);
+//             window.location.reload();
+//         } catch (err) {
+//             console.log(err);
+//         }
+//     };
+
+//     const handleExport = () => {
+//         const worksheet = XLSX.utils.json_to_sheet(usercrud);
+//         const workbook = XLSX.utils.book_new();
+//         XLSX.utils.book_append_sheet(workbook, worksheet, 'User Data');
+//         XLSX.writeFile(workbook, 'student_data.xlsx');
+//     };
+
+//     // Handle page click event
+//     const handlePageClick = ({ selected }) => {
+//         setCurrentPage(selected);
+//     };
+
+//     // Paginate the data
+//     const offset = currentPage * itemsPerPage;
+//     const paginatedData = usercrud.slice(offset, offset + itemsPerPage);
+
+//     return (
+//         <div className="d-flex vh-100 bg-primary justify-content-center align-items-center">
+//             <div className="w-auto bg-white rounded p-3">
+//                 <Link to='/create' className="btn btn-success mb-3">Add +</Link>
+//                 <button onClick={handleExport} className="btn btn-warning mb-3">Export to Excel</button>
+//                 <Link className="btn btn-success mb-3" to="/upload">Import to Excel</Link>
+//                 <table className="table">
+//                     <thead>
+//                         <tr>
+//                             <th>Serial No.</th>
+//                             <th>ID</th>
+//                             <th>Name</th>
+//                             <th>Email</th>
+//                             <th>Phone</th>
+//                             <th>Action</th>
+//                         </tr>
+//                     </thead>
+//                     <tbody>
+//                         {paginatedData.length > 0 ? (
+//                             paginatedData.map((data, index) => (
+//                                 <tr key={data.id}>
+//                                     <td>{offset + index + 1}</td>
+//                                     <td>{data.id}</td>
+//                                     <td>{data.name}</td>
+//                                     <td>{data.email}</td>
+//                                     <td>{data.phone}</td>
+//                                     <td>
+//                                         <Link to={`read/${data.id}`} className="btn btn-green me-2">Read</Link>
+//                                         <Link to={`update/${data.id}`} className="btn btn-primary me-2">Update</Link>
+//                                         <button className="btn btn-danger" onClick={() => handleDelete(data.id)}>Delete</button>
+//                                     </td>
+//                                 </tr>
+//                             ))
+//                         ) : (
+//                             <tr>
+//                                 <td colSpan="6">No data available</td>
+//                             </tr>
+//                         )}
+//                     </tbody>
+//                 </table>
+
+//                 {/* ReactPaginate component for pagination controls */}
+//                 <ReactPaginate
+//                     previousLabel={"Previous"}
+//                     nextLabel={"Next"}
+//                     breakLabel={"..."}
+//                     pageCount={pageCount}
+//                     marginPagesDisplayed={2}
+//                     pageRangeDisplayed={5}
+//                     onPageChange={handlePageClick}
+//                     containerClassName={"pagination justify-content-center"}
+//                     pageClassName={"page-item"}
+//                     pageLinkClassName={"page-link"}
+//                     previousClassName={"page-item"}
+//                     previousLinkClassName={"page-link"}
+//                     nextClassName={"page-item"}
+//                     nextLinkClassName={"page-link"}
+//                     breakClassName={"page-item"}
+//                     breakLinkClassName={"page-link"}
+//                     activeClassName={"active"}
+//                 />
+//             </div>
+//         </div>
+//     );
+// };
+
+// export default Crud;
+
+
+
+// import React, { useEffect, useState } from 'react';
+// import { Link } from 'react-router-dom';
+// import axios from 'axios';
+// import * as XLSX from 'xlsx';
+// import ReactPaginate from 'react-paginate';
+
+// const Crud = () => {
+//     const [usercrud, setCrud] = useState([]);
+//     const [currentPage, setCurrentPage] = useState(0);
+//     const [search, setSearch] = useState(''); // Filter state
+//     const itemsPerPage = 5; // Number of items per page
+//     const pageCount = Math.ceil(usercrud.length / itemsPerPage); // Total number of pages
+
+//     useEffect(() => {
+//         axios.get('http://localhost:8080/')
+//             .then(res => {
+//                 const data = Array.isArray(res.data) ? res.data : [];
+//                 const sortedData = data.sort((a, b) => b.id - a.id);
+//                 setCrud(sortedData);
+//             })
+//             .catch(err => console.log(err));
+//     }, []);
+
+//     const handleDelete = async (id) => {
+//         try {
+//             await axios.delete(`http://localhost:8080/usercrud/` + id);
+//             window.location.reload();
+//         } catch (err) {
+//             console.log(err);
+//         }
+//     };
+
+//     const handleExport = () => {
+//         const worksheet = XLSX.utils.json_to_sheet(usercrud);
+//         const workbook = XLSX.utils.book_new();
+//         XLSX.utils.book_append_sheet(workbook, worksheet, 'User Data');
+//         XLSX.writeFile(workbook, 'student_data.xlsx');
+//     };
+
+//     // Handle page click event
+//     const handlePageClick = ({ selected }) => {
+//         setCurrentPage(selected);
+//     };
+
+//     // Handle filter change
+//     const handleSearchChange = (e) => {
+//         setSearch(e.target.value);
+//     };
+
+//     // Filter the data based on the search query
+//     const filteredData = usercrud.filter((data) =>
+//         data.name.toLowerCase().includes(search.toLowerCase()) ||
+//         data.email.toLowerCase().includes(search.toLowerCase()) ||
+//         data.phone.toLowerCase().includes(search.toLowerCase())
+//     );
+
+//     // Paginate the filtered data
+//     const offset = currentPage * itemsPerPage;
+//     const paginatedData = filteredData.slice(offset, offset + itemsPerPage);
+
+//     return (
+//         <div className="d-flex vh-100 bg-primary justify-content-center align-items-center">
+//             <div className="w-auto bg-white rounded p-3">
+//                 <Link to='/create' className="btn btn-success mb-3">Add +</Link>
+//                 <button onClick={handleExport} className="btn btn-warning mb-3">Export to Excel</button>
+//                 <Link className="btn btn-success mb-3" to="/upload">Import to Excel</Link>
+
+//                 {/* Filter Input */}
+//                 <input
+//                     type="text"
+//                     placeholder="Search by Name, Email, or Phone"
+//                     value={search}
+//                     onChange={handleSearchChange}
+//                     className="form-control mb-3"
+//                 />
+
+//                 <table className="table">
+//                     <thead>
+//                         <tr>
+//                             <th>Serial No.</th>
+//                             <th>ID</th>
+//                             <th>Name</th>
+//                             <th>Email</th>
+//                             <th>Phone</th>
+//                             <th>Action</th>
+//                         </tr>
+//                     </thead>
+//                     <tbody>
+//                         {paginatedData.length > 0 ? (
+//                             paginatedData.map((data, index) => (
+//                                 <tr key={data.id}>
+//                                     <td>{offset + index + 1}</td>
+//                                     <td>{data.id}</td>
+//                                     <td>{data.name}</td>
+//                                     <td>{data.email}</td>
+//                                     <td>{data.phone}</td>
+//                                     <td>
+//                                         <Link to={`read/${data.id}`} className="btn btn-green me-2">Read</Link>
+//                                         <Link to={`update/${data.id}`} className="btn btn-primary me-2">Update</Link>
+//                                         <button className="btn btn-danger" onClick={() => handleDelete(data.id)}>Delete</button>
+//                                     </td>
+//                                 </tr>
+//                             ))
+//                         ) : (
+//                             <tr>
+//                                 <td colSpan="6">No data available</td>
+//                             </tr>
+//                         )}
+//                     </tbody>
+//                 </table>
+
+//                 {/* ReactPaginate component for pagination controls */}
+//                 <ReactPaginate
+//                     previousLabel={"Previous"}
+//                     nextLabel={"Next"}
+//                     breakLabel={"..."}
+//                     pageCount={Math.ceil(filteredData.length / itemsPerPage)} // Adjust page count based on filtered data
+//                     marginPagesDisplayed={2}
+//                     pageRangeDisplayed={5}
+//                     onPageChange={handlePageClick}
+//                     containerClassName={"pagination justify-content-center"}
+//                     pageClassName={"page-item"}
+//                     pageLinkClassName={"page-link"}
+//                     previousClassName={"page-item"}
+//                     previousLinkClassName={"page-link"}
+//                     nextClassName={"page-item"}
+//                     nextLinkClassName={"page-link"}
+//                     breakClassName={"page-item"}
+//                     breakLinkClassName={"page-link"}
+//                     activeClassName={"active"}
+//                 />
+//             </div>
+//         </div>
+//     );
+// };
+
+// export default Crud;
+
+
+
+
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import * as XLSX from 'xlsx';
 import ReactPaginate from 'react-paginate';
+import Filter from './Filter'; // Import the Filter component
 
 const Crud = () => {
     const [usercrud, setCrud] = useState([]);
     const [currentPage, setCurrentPage] = useState(0);
+    const [filters, setFilters] = useState({ name: '', email: '', phone: '' }); // Segment-wise filters
     const itemsPerPage = 5; // Number of items per page
     const pageCount = Math.ceil(usercrud.length / itemsPerPage); // Total number of pages
 
@@ -421,16 +681,32 @@ const Crud = () => {
         setCurrentPage(selected);
     };
 
-    // Paginate the data
+    // Handle segment-wise filter change
+    const handleFilterChange = (filterName, value) => {
+        setFilters({ ...filters, [filterName]: value });
+    };
+
+    // Filter the data based on the segment-wise filters
+    const filteredData = usercrud.filter((data) => 
+        data.name.toLowerCase().includes(filters.name.toLowerCase()) &&
+        data.email.toLowerCase().includes(filters.email.toLowerCase()) &&
+        data.phone.toLowerCase().includes(filters.phone.toLowerCase())
+    );
+
+    // Paginate the filtered data
     const offset = currentPage * itemsPerPage;
-    const paginatedData = usercrud.slice(offset, offset + itemsPerPage);
+    const paginatedData = filteredData.slice(offset, offset + itemsPerPage);
 
     return (
         <div className="d-flex vh-100 bg-primary justify-content-center align-items-center">
-            <div className="w-50 bg-white rounded p-3">
+            <div className="w-auto bg-white rounded p-3">
                 <Link to='/create' className="btn btn-success mb-3">Add +</Link>
                 <button onClick={handleExport} className="btn btn-warning mb-3">Export to Excel</button>
                 <Link className="btn btn-success mb-3" to="/upload">Import to Excel</Link>
+
+                {/* Filter Component */}
+                <Filter filters={filters} handleFilterChange={handleFilterChange} />
+
                 <table className="table">
                     <thead>
                         <tr>
@@ -471,7 +747,7 @@ const Crud = () => {
                     previousLabel={"Previous"}
                     nextLabel={"Next"}
                     breakLabel={"..."}
-                    pageCount={pageCount}
+                    pageCount={Math.ceil(filteredData.length / itemsPerPage)} // Adjust page count based on filtered data
                     marginPagesDisplayed={2}
                     pageRangeDisplayed={5}
                     onPageChange={handlePageClick}
@@ -492,6 +768,8 @@ const Crud = () => {
 };
 
 export default Crud;
+
+
 
 
 
