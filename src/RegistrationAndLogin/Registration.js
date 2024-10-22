@@ -25,8 +25,8 @@ function handleSubmit(e) {
         .catch(err => console.log(err));
 }
   return (
-    <div className='d-flex justify-content-center bg bg-primary vh-100'>
-        <div className='bg-white rounded p-3 w-25'>
+    <div className='d-flex justify-content-center bg-primary vh-100 align-items-center'>
+        <div className='bg-white rounded p-3 w-25 h-80'>
         <h2>Registration</h2>
            <form onSubmit={handleSubmit}>
               <div className='mb-3'>
@@ -70,7 +70,7 @@ function handleSubmit(e) {
               />
               </div>
               <button type='submit' className='btn btn-success w-100 rounded'>Sign Up</button>
-              <h2>TERMS AND CONDITIONS</h2>
+              <h6>Already Registered</h6>
               <Link to='/login' className='btn btn-default border w-100 bg-light rounded-0 text-decoration-none'>Log In</Link>
 
            </form>

@@ -104,8 +104,8 @@ const Login = () => {
     };
 
     return (
-        <div className="d-flex justify-content-center bg bg-primary vh-100">
-            <div className="bg-white rounded p-3 w-25 p-2">
+        <div className="d-flex justify-content-center bg-primary vh-100 align-items-center">
+            <div className="bg-white rounded p-3 w-25 h-50">
                 <h2>Log In</h2>
                 <form onSubmit={handleSubmit}>
                     <div className="mb-3">
@@ -131,8 +131,8 @@ const Login = () => {
                     </div>
 
                     <button type="submit" className="btn btn-success w-100 rounded">Log In</button>
-                    <h2>TERMS AND CONDITIONS</h2>
-                    <Link to="/" className="btn btn-default border w-100 bg-light rounded-0 text-decoration-none">Sign Up</Link>
+                    <h6>New User</h6>
+                    <Link to="/signup" className="btn btn-default border w-100 bg-light rounded-0 text-decoration-none">Sign Up</Link>
                 </form>
             </div>
         </div>
